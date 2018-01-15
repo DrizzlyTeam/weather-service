@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.0.0
+MinimumVisualStudioVersion = 10.0.0.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drizzly.Service.Weather", "Drizzly.Service.Weather\Drizzly.Service.Weather.csproj", "{4DF55365-A45C-4A1E-B29F-C0880CAA7EFF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drizzly.Commons", "..\..\commons\Drizzly.Commons\Drizzly.Commons.csproj", "{8FB01BBD-7D4A-4F88-8A8A-21415E6DD203}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DF55365-A45C-4A1E-B29F-C0880CAA7EFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DF55365-A45C-4A1E-B29F-C0880CAA7EFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DF55365-A45C-4A1E-B29F-C0880CAA7EFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DF55365-A45C-4A1E-B29F-C0880CAA7EFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FB01BBD-7D4A-4F88-8A8A-21415E6DD203}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FB01BBD-7D4A-4F88-8A8A-21415E6DD203}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FB01BBD-7D4A-4F88-8A8A-21415E6DD203}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FB01BBD-7D4A-4F88-8A8A-21415E6DD203}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
