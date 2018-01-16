@@ -1,29 +1,10 @@
 ﻿using System.Collections.Generic;
+using Drizzly.Service.Weather.Providers;
 
 namespace Drizzly.Service.Weather.Types
 {
     public class CustomTypes
     {
-
-        public class Providers
-        {
-
-            public string Name;
-            public string ApiKey;
-            public List<string> Endpoints;
-            public int CallsPerMinute;
-            public int CallsPerDay;
-            
-            public Providers(string name, string apiKey, List<string> endpoints, int callsPerMinute, int callsPerDay)
-            {
-                Name = name;
-                ApiKey = apiKey;
-                Endpoints = endpoints;
-                CallsPerMinute = callsPerMinute;
-                CallsPerDay = callsPerDay;
-            }
-            
-        }
         
         public class Temperature
         {
