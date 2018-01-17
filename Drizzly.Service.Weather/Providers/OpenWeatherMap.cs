@@ -23,7 +23,7 @@ namespace Drizzly.Service.Weather.Providers
             
         }
 
-        public object GetCurrentWeather(double latitude, double longitude, string units)
+        public dynamic GetCurrentWeather(double latitude, double longitude, string units)
         {
 
             var client = new RestClient("http://api.openweathermap.org/data/2.5/weather");
@@ -33,7 +33,7 @@ namespace Drizzly.Service.Weather.Providers
             request.OnBeforeDeserialization = response => { response.ContentType = "application/json"; };
 
             var queryResult = client.Execute(request);
-
+            
             return JsonConvert.DeserializeObject(queryResult.Content);
 
         }
@@ -58,6 +58,13 @@ namespace Drizzly.Service.Weather.Providers
 
             return model;
 
+        }
+        
+        public DateTime UnixTimeStampToDateTime( double unixTimeStamp )
+        {
+            System.DateTime dtDateTime = new DateTime(1970,1,1,0,0,0,0,System.DateTimeKind.Utc);
+            dtDateTime = dtDateTime.AddSeconds( unixTimeStamp ).ToLocalTime();
+            return dtDateTime;
         }
         
     }

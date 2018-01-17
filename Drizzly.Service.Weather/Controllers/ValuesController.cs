@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Drizzly.Commons;
 using Drizzly.Service.Weather.Models;
 using Drizzly.Service.Weather.Providers;
@@ -7,6 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Protocols;
+using Microsoft.Rest.Serialization;
+using Newtonsoft.Json;
 
 namespace Drizzly.Service.Weather.Controllers
 {
@@ -31,8 +34,11 @@ namespace Drizzly.Service.Weather.Controllers
             
             var ok = new OpenWeatherMap(_configuration);
             
-            var result = ok.GetForecast(48.0833, 7.3667, "metric");
-            return Json(result).ToUnifiedResult();
+            var result = ok.GetCurrentWeather(48.0833, 7.3667, "metric");
+
+            Console.WriteLine(ok.UnixTimeStampToDateTime((double)result.dt));
+            
+            return Json((object) result).ToUnifiedResult();
 
         }
         
