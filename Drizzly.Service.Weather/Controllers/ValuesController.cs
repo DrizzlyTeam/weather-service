@@ -36,7 +36,7 @@ namespace Drizzly.Service.Weather.Controllers
             
             var result = ok.GetCurrentWeather(48.0833, 7.3667, "metric");
 
-            Console.WriteLine(ok.UnixTimeStampToDateTime((double)result.dt));
+            Console.WriteLine(((double)result.dt).TimestampToDateTime());
             
             return Json((object) result).ToUnifiedResult();
 
