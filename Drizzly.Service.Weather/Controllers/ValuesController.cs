@@ -29,15 +29,32 @@ namespace Drizzly.Service.Weather.Controllers
         public IActionResult Get(int id)
         {
             var test = new OutputFormat();
-            test.Temperatures.Add(new CustomTypes.Temperature(4.5, 10, 20, CustomTypes.TemperatureUnits.Celsius));
-            test.Temperatures.Add(new CustomTypes.Temperature(5.5, 11, null, CustomTypes.TemperatureUnits.Fahrenheit));
-            
+
             var ok = new OpenWeatherMap(_configuration);
             
             var result = ok.GetCurrentWeather(48.0833, 7.3667, "metric");
 
             Console.WriteLine(((double)result.dt).TimestampToDateTime());
+
+            ok.LastData = ((double) result.dt).TimestampToDateTime();
             
+            test.Providers.Add(ok);
+            
+            test.Temperatures.Add(new CustomTypes.Temperature((double) result.main.temp_min, (double) result.main.temp_max, (double) result.main.temp, CustomTypes.TemperatureUnits.Celsius));
+            
+            return Json((object) test).ToUnifiedResult();
+
+        }
+        
+        [HttpGet("test")]
+        public IActionResult Get()
+        {
+          
+
+            var ok = new OpenWeatherMap(_configuration);
+            
+            var result = ok.GetCurrentWeather(48.0833, 7.3667, "metric");
+
             return Json((object) result).ToUnifiedResult();
 
         }

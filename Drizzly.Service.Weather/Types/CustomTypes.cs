@@ -12,14 +12,14 @@ namespace Drizzly.Service.Weather.Types
             public double Min;
             public double Max;
             public double ?Observed;
-            public TemperatureUnits Units;
+            public string Units;
             
             public Temperature(double min, double max, double ?observed, TemperatureUnits units)
             {
                 Min = min;
                 Max = max;
                 Observed = observed;
-                Units = units;
+                Units = units.ToString();
             }
             
         }

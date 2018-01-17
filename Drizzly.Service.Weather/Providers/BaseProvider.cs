@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Drizzly.Service.Weather.Providers
 {
@@ -9,5 +10,6 @@ namespace Drizzly.Service.Weather.Providers
         public List<string> Endpoints;
         public int CallsPerMinute;
         public int CallsPerDay;
+        public DateTime LastData;
     }
 }
