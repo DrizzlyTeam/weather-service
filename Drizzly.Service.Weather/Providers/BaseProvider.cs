@@ -10,6 +10,6 @@ namespace Drizzly.Service.Weather.Providers
         public List<string> Endpoints;
         public int CallsPerMinute;
         public int CallsPerDay;
-        public DateTime LastData;
+        public double LastData;
     }
 }

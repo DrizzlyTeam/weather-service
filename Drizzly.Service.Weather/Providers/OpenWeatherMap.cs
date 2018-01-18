@@ -1,7 +1,9 @@
 ﻿﻿using System;
 using System.Collections.Generic;
 using Drizzly.Service.Weather.Models;
-using Microsoft.Extensions.Configuration;
+ using Drizzly.Service.Weather.Types;
+ using Microsoft.AspNetCore.Authentication;
+ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using RestSharp;
 
@@ -18,8 +20,8 @@ namespace Drizzly.Service.Weather.Providers
             {
                 "api.openweathermap.org"
             };
-            CallsPerMinute = 10;
-            CallsPerDay = 500;
+            CallsPerMinute = 60;
+            CallsPerDay = 0;
 
         }
 
@@ -53,9 +55,24 @@ namespace Drizzly.Service.Weather.Providers
             
         }
 
-        public OutputFormat PopulateOutput(string json, OutputFormat model)
+        public OutputFormat PopulateOutput(dynamic json, BaseProvider provider, OutputFormat model, CustomTypes.DataTypes dataType)
         {
 
+            provider.LastData = json.dt;
+            
+            model.Infos.DataType = CustomTypes.DataTypes.Current.ToString();
+            model.Infos.Location = new CustomTypes.Locations((double) json.coord.lat, (double) json.coord.lon, (string) json.name, (string) json.sys.country);
+            model.Infos.Sun = new CustomTypes.Sun((double) json.sys.sunrise, (double) json.sys.sunset);
+            
+            model.Providers.Add(provider);
+            
+            model.Temperatures.Add(new CustomTypes.Temperature((double) json.main.temp_min, (double) json.main.temp_max, (double) json.main.temp, CustomTypes.TemperatureUnits.Celsius));
+            model.Winds.Add(new CustomTypes.Winds(new CustomTypes.WindSpeed((double)json.wind.speed, null, CustomTypes.WindSpeedUnits.KilometersPerHour), (int) json.wind.deg));
+            model.Humidity.Add((float) json.main.humidity);
+            model.Pressure.Add((float) json.main.pressure);
+            model.Visibility.Add((float) json.visibility);
+            model.CloudCover.Add((float) json.clouds.all);
+            
             return model;
 
         }

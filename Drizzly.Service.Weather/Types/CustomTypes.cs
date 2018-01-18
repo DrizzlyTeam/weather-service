@@ -1,10 +1,64 @@
 ﻿using System.Collections.Generic;
 using Drizzly.Service.Weather.Providers;
+using Microsoft.AspNetCore.Server.Kestrel.Internal.System.Collections.Sequences;
 
 namespace Drizzly.Service.Weather.Types
 {
     public class CustomTypes
     {
+
+        public class Infos
+        {
+            
+            public string DataType;
+            public Locations Location;
+            public Sun Sun;
+
+            public Infos()
+            {
+                
+            }
+
+            public Infos(string dataType, Locations location, Sun sun)
+            {
+                DataType = dataType;
+                Location = location;
+                Sun = sun;
+            }
+            
+        }
+
+        public class Locations
+        {
+            
+            public double Latitude;
+            public double Longitude;
+            public string Name;
+            public string Country;
+
+            public Locations(double latitude, double longitude, string name, string country)
+            {
+                Latitude = latitude;
+                Longitude = longitude;
+                Name = name;
+                Country = country;
+            }
+            
+        }
+
+        public class Sun
+        {
+            
+            public double Sunrise;
+            public double Sunset;
+
+            public Sun(double sunrise, double sunset)
+            {
+                Sunrise = sunrise;
+                Sunset = sunset;
+            }
+            
+        }
         
         public class Temperature
         {
@@ -12,16 +66,30 @@ namespace Drizzly.Service.Weather.Types
             public double Min;
             public double Max;
             public double ?Observed;
-            public string Units;
+            public string Unit;
             
-            public Temperature(double min, double max, double ?observed, TemperatureUnits units)
+            public Temperature(double min, double max, double ?observed, TemperatureUnits unit)
             {
                 Min = min;
                 Max = max;
                 Observed = observed;
-                Units = units.ToString();
+                Unit = unit.ToString();
             }
             
+        }
+
+        public class Winds
+        {
+
+            public WindSpeed Speed;
+            public int Direction;
+
+            public Winds(WindSpeed speed, int direction)
+            {
+                Speed = speed;
+                Direction = direction;
+            }
+
         }
         
         public class WindSpeed
@@ -29,26 +97,20 @@ namespace Drizzly.Service.Weather.Types
             
             public double ?Observed;
             public double ?ObservedGust;
-            public WindSpeedUnits Units;
+            public string Unit;
             
-            public WindSpeed(double ?observed, WindSpeedUnits units)
+            public WindSpeed(double ?observed, double ?observedGust, WindSpeedUnits unit)
             {
                 Observed = observed;
-                Units = units;
+                ObservedGust = observedGust;
+                Unit = unit.ToString();
             }
             
         }
 
-        public class WindDirection
+        public class Precipitations
         {
-
-            public float Direction;
-
-            public WindDirection(float direction)
-            {
-                Direction = direction;
-            }
-
+            
         }
 
         public enum TemperatureUnits
@@ -63,6 +125,12 @@ namespace Drizzly.Service.Weather.Types
             KilometersPerHour,
             MilesPerHour,
             MetersPerSeconds
+        }
+
+        public enum DataTypes
+        {
+            Current,
+            Forecast
         }
         
     }

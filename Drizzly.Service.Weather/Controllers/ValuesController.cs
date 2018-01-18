@@ -33,16 +33,10 @@ namespace Drizzly.Service.Weather.Controllers
             var ok = new OpenWeatherMap(_configuration);
             
             var result = ok.GetCurrentWeather(48.0833, 7.3667, "metric");
-
-            Console.WriteLine(((double)result.dt).TimestampToDateTime());
-
-            ok.LastData = ((double) result.dt).TimestampToDateTime();
             
-            test.Providers.Add(ok);
+            OutputFormat test2 = ok.PopulateOutput(result, ok, test, CustomTypes.DataTypes.Current);
             
-            test.Temperatures.Add(new CustomTypes.Temperature((double) result.main.temp_min, (double) result.main.temp_max, (double) result.main.temp, CustomTypes.TemperatureUnits.Celsius));
-            
-            return Json((object) test).ToUnifiedResult();
+            return Json((object) test2).ToUnifiedResult();
 
         }
         
