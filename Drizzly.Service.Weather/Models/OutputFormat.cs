@@ -15,6 +15,7 @@ namespace Drizzly.Service.Weather.Models
         public List<float> Pressure { get; set; }
         public List<float> Visibility { get; set; }
         public List<float> CloudCover { get; set; }
+        public List<CustomTypes.Precipitations> Precipitations { get; set; }
 
         public OutputFormat()
         {
@@ -26,6 +27,7 @@ namespace Drizzly.Service.Weather.Models
             Pressure = new List<float>();
             Visibility = new List<float>();
             CloudCover = new List<float>();
+            Precipitations = new List<CustomTypes.Precipitations>();
         }
         
     }

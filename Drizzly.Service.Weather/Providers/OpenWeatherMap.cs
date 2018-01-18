@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Drizzly.Service.Weather.Models;
 using Drizzly.Service.Weather.Types;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using RestSharp;
 
 namespace Drizzly.Service.Weather.Providers
@@ -74,6 +76,11 @@ namespace Drizzly.Service.Weather.Providers
             model.Pressure.Add((float) json.main.pressure);
             model.Visibility.Add((float) json.visibility);
             model.CloudCover.Add((float) json.clouds.all);
+
+
+            model.Precipitations.Add(
+                new CustomTypes.Precipitations(json["rain"] != null ? Convert.ToDouble(json.rain["3h"]) : null, 
+                    json["snow"] != null ? Convert.ToDouble(json.snow["3h"]) : null));
 
             return model;
         }

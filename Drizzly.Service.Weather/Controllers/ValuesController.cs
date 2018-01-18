@@ -32,7 +32,7 @@ namespace Drizzly.Service.Weather.Controllers
 
             var ok = new OpenWeatherMap(_configuration);
             
-            var result = ok.GetCurrentWeather(48.0833, 7.3667, "metric");
+            var result = ok.GetCurrentWeather(46.58, 0.34, "metric");
             
             OutputFormat test2 = ok.PopulateOutput(result, ok, test, CustomTypes.DataTypes.Current);
             
@@ -47,7 +47,7 @@ namespace Drizzly.Service.Weather.Controllers
 
             var ok = new OpenWeatherMap(_configuration);
             
-            var result = ok.GetCurrentWeather(48.0833, 7.3667, "metric");
+            var result = ok.GetCurrentWeather(46.58, 0.34, "metric");
 
             return Json((object) result).ToUnifiedResult();
 
